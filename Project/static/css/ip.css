@@ -1,0 +1,27 @@
+
+body{
+    background: #8999A8;
+    line-height: 0;
+    font-family: 'PT Serif', serif;
+}
+.add, .dropdown-menu{
+background:rgba(255,255,255,0.25);
+border: none;
+min-height: 50px;
+margin-bottom: 50px;
+}
+.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;
+margin-top: 7px}
+
+
+.panel-body .btn {  width:100%; margin-bottom:10px; }
+
+@media only screen and (max-width: 768px)
+{
+	.drop{padding-left: 0px;
+		padding-right: 0px;
+		display :none;	
+		}
+		
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login and Register Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styling.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jscript.js"></script>
+    <script type="text/javascript" src="controllers/mainCtrl.js"></script>
+
+</head>
+<body ng-app="myApp" style="padding-top: 0px; font-family: 'Quicksand', sans-serif; background: url(images/img2.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; font-family: 'Quicksand', sans-serif;">
+	<div class="container">
+		<div class="row" style="height: 190px;">
+			<svg viewBox="0 0 1020 300">
+    			<symbol id="s-text">
+					<text text-anchor="middle" x="500" y="150">&lt;Code&gt;iction</text>
+				</symbol>
+				<g class = "g-ants">
+					<use xlink:href="#s-text" class="text-copy"></use>
+					<use xlink:href="#s-text" class="text-copy"></use>
+					<use xlink:href="#s-text" class="text-copy"></use>
+					<use xlink:href="#s-text" class="text-copy"></use>
+					<use xlink:href="#s-text" class="text-copy"></use>
+					<use xlink:href="#s-text" class="text-copy"></use>
+					<use xlink:href="#s-text" class="text-copy"></use>
+				</g>
+			</svg>
+		</div>
+	</div>
+	<div class="container" ng-controller="loginCtrl">
+		<h2 align="center" style="color: white;">Welcome <i style="color: red;">{{uname1}}</i> !</h2>
+		<br><br>
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								
+								<form name="form1" id="login-form" ng-submit="validate()" method="get" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" required class="form-control" placeholder="Username" value="" ng-model="uname1" maxlength="20" onfocus="hideInvalidLogin()">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" required class="form-control" placeholder="Password" ng-model="pass1" minlength="3" maxlength="20">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div id="invalidLogin" style="color: red; text-align: center; display: none">{{uname1}} username or password is incorrect.</div>
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" ng-disabled="form1.$invalid">
+											</div>
+										</div>
+									</div>
+								</form>
+
+								<form name="form2" id="register-form" ng-submit="add()" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<span id="invalidUser" style="color: red; display: none">Username is already registered</span>
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required ng-model="uname2" minlength="3" maxlength="20">
+									</div>
+									<div class="form-group">
+										<span id="invalidEmail" style="color: red; display: none">Email is already registered</span>
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required ng-model="email2" minlength="6" maxlength="50">
+									</div>
+									<div class="form-group">
+										<span id="invalidPass" style="color: red; display: none">Passwords don't match</span>
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required ng-model="pass2" minlength="3" maxlength="20">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required ng-model="pass3" minlength="3" maxlength="20">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div id="registered" style="display: none; color: green; text-align: center;">You are registered. Please login to continue</div><br>
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now" ng-disabled="form2.$invalid">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

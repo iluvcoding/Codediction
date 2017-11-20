@@ -1,0 +1,22 @@
+.transparents {
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
+}
+
+.clock {
+	height: 60px;	
+}
+
+.timer{
+    zoom: 0.52;
+    -moz-transform: scale(0.5);
+}
+
+.flip-clock-label {
+	display: none;
+}
+
+.seconds > .top, .bottom {
+	background: #ccc;
+}
+

@@ -1,0 +1,43 @@
+.transparents {
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
+}
+
+
+
+ .containers
+ {
+ 	margin-top: 100px;
+ }
+/*@media only screen and (max-width: 768px) {
+ .collap
+ {
+ 	margin-top: 12px;
+ }
+ .open>.dropdown
+ {
+ 	margin-top: :200px;
+ }
+}*/
+
+.faf
+{
+    margin-left:0px;
+}
+
+@media only screen and (min-width:450px) {
+
+.faf
+{
+margin-left:16%;
+}
+
+}
+
+
+@media only screen and (max-width: 767px) {
+ .collap
+ {
+ 	margin-top: 12px;
+ }
+}

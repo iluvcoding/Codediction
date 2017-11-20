@@ -1,0 +1,14 @@
+.demoPadder {
+    padding-top:15px;
+}
+.btn-default {
+    color: #007aff;
+    background-color: #fff;
+    border-color: #007aff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+    color: #fff;
+    background-color: #007aff;
+    border-color: #007aff;
+}

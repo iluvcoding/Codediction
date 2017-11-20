@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz Page</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/quiz.css">
+        <link href="css/pe-icon-7-stroke.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/ct-navbar.css">
+        <link rel="stylesheet" type="text/css" href="css/radio_button.css">
+        <link rel="stylesheet" type="text/css" href="css/modal.css">
+        <link rel="stylesheet" type="text/css" href="css/modifications.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js""></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/ct-navbar.js"></script>
+        <script src="js/quiz.js"></script>
+        <script src="js/angular.js"></script>
+        <script src="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.js"></script>
+    </head>
+    <body style="background: url(images/img4.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; font-family: 'Quicksand', sans-serif;"  ng-app="myRoute" ng-controller="setActive">
+
+        <!-- Delete Account Modal -->
+        <div class="container">
+            <div id="delModal" class="modal fade in">
+                <div class="modal-dialog" style="width:350px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="btn btn-default" ng-click="closePopup()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                            <h4 class="modal-title">Delete Account</h4>
+                        </div>
+                        <div class="modal-body" style="padding-left: 11px">
+                            <div id="passMismatch" style="color: red; text-align: center; display: none;">Passwords don't match</div><br>
+                            <div id="invPass" style="color: red; text-align: center; display: none;">Incorrect Password</div><br>
+                           <label>Password<input type="Password" ng-model="delPass1" style="margin-left: 65px"></label><br/><br/>
+                           <label>Confirm Password<input type="Password" ng-model="delPass2" style="margin-left: 10px"></label>
+                        </div><br>
+                        <div class="modal-footer" style="text-align: center;padding-bottom:5px;padding-top: 5px">
+                            <div class="btn-group" style="margin :1px">
+                                <button class="btn btn-danger" ng-click="closePopup()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                <button class="btn btn-primary" ng-click="delAccount()"><span class="glyphicon glyphicon-check"></span> Confirm</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dalog -->
+            </div>
+        </div>
+
+        <!-- Change Password model -->
+        <div class="container">
+            <div id="passModal" class="modal fade in">
+                <div class="modal-dialog" style="width:400px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="btn btn-default" ng-click="closePopup()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                            <h4 class="modal-title">Change Password</h4>
+                        </div>
+                        <div class="modal-body" style="padding-left: 11px">
+                            <div id="passMismatch2" style="color: red; text-align: center; display: none;">Incorrect Password</div><br>
+                            <div id="passMatch" style="color: green; text-align: center; display: none;">Password Updated</div><br>
+                           <label>Current Password<input type="Password" ng-model="changePass1" style="margin-left: 15px"></label><br/><br/>
+                           <label>New Password<input type="Password" ng-model="changePass2" style="margin-left: 34px"></label>
+                        </div><br>
+                        <div class="modal-footer" style="text-align: center;padding-bottom:5px;padding-top: 5px">
+                            <div class="btn-group" style="margin :1px">
+                                <button class="btn btn-danger" ng-click="closePopup()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                <button class="btn btn-primary" ng-click="changePass()"><span class="glyphicon glyphicon-check"></span> Confirm</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dalog -->
+            </div>
+        </div>
+
+        <div id="navbar-full">
+            <div id="navbar">
+                <nav class="navbar navbar-fixed-top navy" role="navigation" style="border-style: solid; border-color: black; margin-bottom: 0cm;">
+                    <div style="padding-right: 20px;" class="transparents" >
+                        <div class="navbar-header">
+                            <button type="button" id="checkButt" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="Main.html" class="hidden-xs">
+                                <div style="padding-left: 10%; padding-top: 4%">
+                                    <img src="images/logo2.png" style="height: 80px; width: 100px;">
+                                </div>
+                            </a>
+                            <a href="Main.html" class="visible-xs">
+                                <div style="float: left;">
+                                    <img src="images/logo2.png" style="height: 80px; width: 100px;">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="collapse navbar-collapse collap " id="bs-example-navbar-collapse-1" >
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown hidden-xs" id="padd">
+                                    <a href="check" class="navbar-brand navbar-brand-logo navbar dropdown-toggle" data-toggle="dropdown" style="height: 72px;" id="user">
+                                        <div class="logo">
+                                            <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                                        </div>
+                                        <div class="brand" style="padding-top: 9%; padding-right: 75px; color: white;"> {{myText}} </div>
+                                    </a>
+                                    <ul class="dropdown-menu" style="text-align: center;">
+                                        <li><a data-toggle="modal" href="#delModal"><i class="pe-7s-trash" style="font-size: 20px; float: left;"></i>Delete Account</a></li>
+                                        <li><a data-toggle="modal" href="#passModal"><i class="pe-7s-refresh" style="font-size: 20px; float: left;"></i>&nbsp;Change Password</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="" ng-click="logout()">Logout</a></li>
+                                        <li class="divider visible-xs"></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown visible-xs" id="padd"  >
+                                    <a href="check" class="navbar-brand navbar-brand-logo navbar dropdown-toggle" data-toggle="dropdown" style="height: 72px" id="user">
+                                        <div class="logo">
+                                            <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                                        </div>
+                                        <div class="brand" style="padding-top: 9%; color: white;padding-right: 0px"> {{myText}} </div>
+                                    </a>
+                                    <ul class="dropdown-menu faf" style="text-align: center ; float:left;">
+                                        <li ><a data-toggle="modal" href="#delModal"><i class="pe-7s-trash" style="font-size: 20px; float: left;"></i>Delete Account</a></li>
+                                        <li><a data-toggle="modal" href="#passModal" ><i class="pe-7s-refresh" style="font-size: 20px; float: left;"></i>&nbsp;Change Password</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="" ng-click="logout()" >Logout</a></li>
+                                        <li class="divider visible-xs"></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="containers">
+            <div class="row">
+                <div class="wrapper">
+                    <div class="side-bar">
+                        <ul>
+                            <li class="menu-head" style="text-align: center; font-size: 17px;">
+                                Quiz Topics <a class="push_menu"><span class="glyphicon glyphicon-align-justify pull-right"></span></a>
+                            </li>
+                            <div class="menu">
+                                <li>
+                                    <a ng-href="#/Stacks" ng-class="{active: check == 'Stacks'}" ng-click="setCheck('Stacks')">Stacks<span class="glyphicon glyphicon-dashboard pull-right"></span></a>
+                                </li>
+                                <li>
+                                    <a ng-href="#/Queues" ng-class="{active: check == 'Queues'}" ng-click="setCheck('Queues')">Queues<span class="glyphicon glyphicon-heart pull-right"></span></a>
+                                </li>
+                                <li>
+                                    <a ng-href="#/Trees" ng-class="{active: check == 'Trees'}" ng-click="setCheck('Trees')">Trees<span class="glyphicon glyphicon-star pull-right"></span></a>
+                                </li>
+                                <li>
+                                    <a ng-href="#/Graphs" ng-class="{active: check == 'Graphs'}" ng-click="setCheck('Graphs')">Graphs<span class="glyphicon glyphicon-cog pull-right"></span></a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <div id="newId" class="col-md-12">
+                            <div ng-view style="background-color: white; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

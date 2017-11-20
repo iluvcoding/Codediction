@@ -1,0 +1,42 @@
+ #editor 
+ {
+  position: relative;
+  height: 300px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  font-size: 15px;
+
+}
+ .transparents 
+{
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
+}
+
+p{
+	font-size: 20px;
+}
+
+#myChall
+{
+  margin-top:5px;
+}
+
+.col-xs-12
+{
+  margin-left:5%;
+}
+
+/*.edit , .edit2
+{
+	margin-left: 70px;
+}*/
+
+/*@media only screen and (max-width: 988px)
+{
+	.edit , .edit2
+	{
+		margin-left: 0px;
+	}
+}*/

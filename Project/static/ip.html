@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/ip.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/boot.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js""></script>
+  <script type="text/javascript" src="controllers/mainCtrl.js"></script>
+
+  <title>Main Page</title>
+</head>
+
+<body ng-app="myApp" ng-controller="mainPageCtrl">
+<div class="container" style="width: 100%">
+  <div class="row add" style="min-height: 83px">
+       <div class="col-md-6 col-xs-6 col-sm-6"><img src="1.png" alt="logo" height="75px" style="padding-top:8px "></div>
+       <div class="col-md-3 col-xs-6 col-sm-3 text-right">
+      <a class="btn icon-btn btn-success" style="background-color: rgba(126,122,158,0.52);border-color:rgba(126,122,158,0.52);margin-top: 23px " href="MCQ.html">
+      <span class="glyphicon btn-glyphicon glyphicon-plus img-circle" style="color: #3c5376" ></span>Create Question</a>
+    </div>
+       
+    <div  class="col-md-3 col-xs-3 col-sm-3 text-right drop" >
+        <ul class=" dropdown pull-right" style="padding: 10px;margin-top:23px;margin-bottom: 0px;padding-right: 3px">
+        <span class="glyphicon glyphicon-user" style="font-size: 18px"></span>
+          <a href="#"  class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" style="font-size: 20px;color:rgba(0,0,0,0.52)">Hello {{myText}} 
+            <span class="caret"></span>
+          </a>
+            <ul class="dropdown-menu" style="color:rgba(126,122,158,0.52);margin: 0px;background-color: rgba(137,153,171,0)">
+                  <li><a href="#" style="color:rgba(0,0,0,0.75)">Change Password</a></li>
+                  <li><a href="#" style="color:rgba(0,0,0,0.75)">My Profile</a></li>
+                  <li><a href="#" style="color:rgba(0,0,0,0.75)">LogOut</a></li>
+              </ul>
+            </ul>
+      </div>
+  </div>
+ </div>
+  
+  <div class="container" style="margin-top: 1%" >
+    <div class="row text-center pull-center" >
+          <div class="col-md-12  col-sm-12">
+              <div class="panel panel-primary">
+                  <div class="panel-heading" style="padding:16px 15px">
+                      <h3 class="panel-title text text-center" style="font-size: 24px">
+                          <span class="glyphicon glyphicon-bookmark"></span> Quiz Topics</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row " id="list" >
+                          <div class="col-xs-12 col-md-6 col-sm-12" >
+
+                              <div class="col-lg-12 col-sm-12 col-md-12">
+                              <a href="stack.html" class="btn btn-danger btn-lg" role="button" style="font-size: 30px"><span class="glyphicon glyphicon-list-alt"></span> <br/>Stacks</a>
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <a href="Queue.html" class="btn btn-warning btn-lg" role="button" style="font-size: 30px"><span class="glyphicon glyphicon-list-alt"></span> <br/>Queue</a>
+                              </div>
+
+
+                          </div>
+                          <div class=" col-xs-12 col-md-6 col-sm-12 ">
+                              <div class="col-lg-12 col-sm-12 col-md-12">
+                              <a href="Graph.html" class="btn btn-success btn-lg" role="button" style="font-size: 30px"><span class="glyphicon glyphicon-list-alt"></span> <br/>Graph</a>
+                              <a href="Tree.html" class="btn btn-info btn-lg" role="button" style="font-size: 30px"><span class="glyphicon glyphicon-list-alt"></span> <br/>Tree</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+</html>

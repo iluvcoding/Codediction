@@ -1,0 +1,34 @@
+<div id="myDiv" ng-controller="setActive" ng-init="loadData(check)" style="background-color: white">
+	<div>
+       	<span><button style="width: 12em; float: right; margin-top: 10px; margin-right: 10px;" type="button" class="btn btn-danger mainDelBtn" ng-show="checkTeacher()" ng-click="showChecks()">Delete Questions</button></span>
+       	
+		<h2 style="margin-top: 0px; padding-left: 20px; padding-top: 10px;">{{check}}</h2>
+		<br>
+	</div>
+
+	<ol type="1" style="font-size: 20px;">
+		<li ng-repeat="x in arr" ng-init="radioName=getName(); checkClass=getCheckClass(); spanClass=getSpanClass()">
+			<div style="white-space: normal;">
+				<span class={{spanClass}} style="display: none;"><input type="checkbox" class={{checkClass}} value={{x.question}}> </span>{{x.question}}
+			</div>
+			<div ng-repeat="op in x.options" ng-init="myClass=getClass(op, x.answer)">
+				<div data-toggle="buttons">
+					<label class="btn active">
+						<input type="radio" name={{radioName}} value={{op}} required>
+						<i class='fa fa-circle-o fa-x'></i>
+						<i class='fa fa-dot-circle-o fa-x'></i>
+						&nbsp; &nbsp;
+						<span style="font-size: 18px; color: #7AA3CC; white-space: normal;">{{op}}</span>
+					</label>
+					<span class={{myClass}} style="display: none;"><i class="pe-7s-check" style="font-size: 30px; color: #029f5b;"></i></span>
+					<span><i class="pe-7s-close" style="font-size: 30px; color: red; display: none;"></i></span>
+				</div>
+			</div><br>
+		</li>
+	</ol>
+	<div id="footer">
+        <button style="width: 7em;" type="button" class="btn btn-success myCheckBtn" ng-click="checkAns()">Check now!</button>
+        <button style="width: 9em; display: none" type="button" class="btn btn-success myDelBtn1" ng-click="deleteQues()">Confirm Delete</button>
+        <button style="width: 9em; display: none" type="button" class="btn btn-danger myDelBtn2" ng-click="cancelDel()">Cancel</button>
+    </div>
+</div>

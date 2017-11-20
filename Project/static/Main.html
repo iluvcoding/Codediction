@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+  		<title>Main Page</title>
+  		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css"> -->
+  		<link rel="stylesheet" type="text/css" href="css/animate.css">
+  		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  		<link href="css/pe-icon-7-stroke.css" rel="stylesheet">
+  		<link href="css/ct-navbar.css" rel="stylesheet">
+  		<link rel="stylesheet" type="text/css" href="css/main.css">
+  		<link rel="stylesheet" type="text/css" href="css/modal.css">
+
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+  		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js""></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.js"></script>
+      <script type="text/javascript" src="js/angular.js"></script>
+  		<script src="js/ct-navbar.js"></script>
+  		<script src="js/main.js"></script>
+  	</head>
+
+  	<body ng-app="myRoute" ng-controller="setActive" style="background: url(images/img4.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; font-family: 'Quicksand', sans-serif;">
+  		<!-- <div class="page-bg"></div> -->
+  		<!-- Delete Account Modal -->
+        <div class="container" ng-init="loadTestNames()">
+            <div id="delModal" class="modal fade in">
+                <div class="modal-dialog" style="width:350px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="btn btn-default" ng-click="closePopup()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                            <h4 class="modal-title">Delete Account</h4>
+                        </div>
+                        <div class="modal-body" style="padding-left: 11px">
+                            <div id="passMismatch" style="color: red; text-align: center; display: none;">Passwords don't match</div>
+                            <br>
+                            <div id="invPass" style="color: red; text-align: center; display: none;">Incorrect Password</div>
+                            <br>
+                            <label>Password<input type="Password" ng-model="delPass1" style="margin-left: 65px"></label><br/>
+                            <br/>
+                            <label>Confirm Password<input type="Password" ng-model="delPass2" style="margin-left: 10px"></label>
+                        </div>
+                        <br>
+                        <div class="modal-footer" style="text-align: center;padding-bottom:5px;padding-top: 5px">
+                            <div class="btn-group" style="margin :1px">
+                                <button class="btn btn-danger" ng-click="closePopup()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                <button class="btn btn-primary" ng-click="delAccount()"><span class="glyphicon glyphicon-check"></span> Confirm</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dalog -->
+            </div>
+        </div>
+
+    		<!-- Change Password model -->
+    		<div class="container">
+    			  <div id="passModal" class="modal fade in">
+    	          <div class="modal-dialog" style="width:400px">
+    	              <div class="modal-content">
+    	                  <div class="modal-header">
+    	                      <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+    	                      <h4 class="modal-title">Change Password</h4>
+    	                  </div>
+    	                  <div class="modal-body" style="padding-left: 11px">
+    	                    	<div id="passMismatch2" style="color: red; text-align: center; display: none;">Incorrect Password</div><br>
+    	                    	<div id="passMatch" style="color: green; text-align: center; display: none;">Password Updated</div><br>
+    	                      <label>Current Password<input type="Password" ng-model="changePass1" style="margin-left: 15px"></label><br/><br/>
+    	                      <label>New Password<input type="Password" ng-model="changePass2" style="margin-left: 34px"></label>
+    	                  </div>
+    	                  <br>
+    	                  <div class="modal-footer" style="text-align: center;padding-bottom:5px;padding-top: 5px">
+    	                      <div class="btn-group" style="margin :1px">
+    	                          <button class="btn btn-danger " data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+    	                          <button class="btn btn-primary" ng-click="changePass()"><span class="glyphicon glyphicon-check"></span> Confirm</button>
+    	                      </div>
+    	                  </div>
+    	           		</div><!-- /.modal-content -->
+    	    		  </div><!-- /.modal-dalog -->
+    	      </div>
+    		</div>
+
+    		<!-- <div id="navbar-full">
+        		<div id="navbar">
+        			<nav class="navbar transparents" role="navigation">	
+        				<div style="padding-right: 20px;">
+        					<div class="navbar-header col-md-6 col-xs-6">
+                  				<a href="Main.html" class="hidden-xs">
+                        			<div style="padding-left: 10%; padding-top: 4%">
+                						<img src="images/logo2.png" style="height: 80px; width: 100px;">
+                					</div>
+          						</a>
+          						<a href="Main.html" class="visible-xs">
+                        			<div style="float: left;">
+                						<img src="images/logo2.png" style="height: 80px; width: 100px;">
+                					</div>
+          						</a>
+                  			</div>
+                  			 <div class="col-md-6 col-xs-6">
+                  				<ul class="nav navbar-nav pull-right">
+                  			 		<li class="uppercreate dropdown hidden-xs" style="margin-top: 11%;" ng-show="checkTeacher()">
+                        				<input type="checkbox" id="toggle">
+                        				<label class="butt transparents" for="toggle" id="l1"></label>
+                    					<ul class="dropdown-menu" style="text-align: center;">
+                    						<li><a href="MCQ.html">Create MCQ</a></li>
+                    						<li><a href="Test.html">Create Test</a></li>
+                    						<li><a href="Challenge.html">Create Challenge</a></li>
+                    					</ul>
+                        			</li>
+                        			<li class="dropdown " id="padd">
+                        				<a href="#" class="navbar-brand navbar-brand-logo navbar dropdown-toggle" data-toggle="dropdown" style="height: 72px;">
+                                			<div class="logo">
+                        						<img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                        					</div>
+    			                    		<div class="brand" style="padding-top: 9%; padding-right: 60px"> {{myText}} </div>
+                  						</a>
+                              			<ul class="dropdown-menu " style="text-align: center;">
+                                			<li><a data-toggle="modal" href="#delModal"><i class="pe-7s-trash" style="font-size: 20px; float: left;"></i>Delete Account</a></li>
+    			                            <li><a data-toggle="modal" href="#passModal"><i class="pe-7s-refresh" style="font-size: 20px; float: left;"></i>&nbsp;Change Password</a></li>
+    			                            <li class="divider"></li>
+    			                            <li><a href="" ng-click="logout()">Logout</a></li>
+    			                            <li class="divider visible-xs"></li>
+                              			</ul>
+                        			</li>
+                        		 	</ul>
+                        		</div> 
+                  		</div>
+                  	</nav>
+                </div>
+            </div>
+     -->	
+    		<div id="navbar-full">
+        		<div id="navbar">
+        			  <nav class="navbar transparents" role="navigation" >	
+        				    <div style="padding-right: 20px;">
+        					      <div class="navbar-header">
+        						        <button type="button" id="fafy" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        				                <span class="sr-only">Toggle navigation</span>
+        				                <span class="icon-bar"></span>
+        				                <span class="icon-bar"></span>
+        				                <span class="icon-bar"></span>
+                  				  </button>
+
+                      				<!--<div style="padding-top: 5%; height: 100px; width: 100px; border-radius: 50%; background: #030321; display: inline-block; position: absolute; left: 150px;">
+                      				</div>
+                      				<div style="display: inline-block; float: left; position: absolute; left: 0; top: 30px;">
+        								      <svg viewBox="0 0 1020 300">
+        				    				  <symbol id="s-text">
+        										  <text text-anchor="middle" x="500" y="150">&lt;C&gt;</text>
+        									    </symbol>
+            									<g class = "g-ants" style="padding-left: 0px;>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            										<use xlink:href="#s-text" class="text-copy"></use>
+            									</g>
+            								  </svg>
+        							       </div> -->
+    							
+    							          <a href="Main.html" class="hidden-xs">
+                        			  <div style="padding-left: 10%; padding-top: 4%">
+                						        <img src="images/logo2.png" style="height: 80px; width: 100px;">
+                					      </div>
+          						      </a>
+          						      <a href="Main.html" class="visible-xs">
+                        			  <div style="float: left;">
+                						        <img src="images/logo2.png" style="height: 80px; width: 100px;">
+                					      </div>
+          						      </a>
+                  			</div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  				  <ul class="nav navbar-nav navbar-right">
+    							
+    								<!--<li>
+                            			<a href="javascript:void(0);" data-toggle="search" class="hidden-xs">
+                                			<i class="pe-7s-search"></i>
+                                			<p>Search</p>
+                            			</a>
+                        			</li>
+                        			<li>
+                            			<a href="#">
+    			                            <i class="pe-7s-mail"><span class="label">23</span></i>
+    			                            <p>Messages</p>
+    			                        </a>
+                        			</li> -->
+
+                        			  <li class=" dropdown hidden-xs" style="margin-top: 11%;" ng-show="checkTeacher()">
+                        				    <input type="checkbox" id="toggle">
+                    				        <label class="butt transparents" for="toggle" id="l1"></label>
+            					              <ul class="dropdown-menu" style="text-align: center;">
+                            						<li><a href="MCQ.html">Create MCQ</a></li>
+                            						<li><a href="Test.html">Create Test</a></li>
+                            						<li><a href="Challenge.html">Create Challenge</a></li>
+            					              </ul>
+                        			  </li>
+                        			  <li class="dropdown hidden-xs" id="padd">
+                        				    <a href="#" class="navbar-brand navbar-brand-logo navbar dropdown-toggle" data-toggle="dropdown" style="height: 72px;">
+                                		    <div class="logo">
+                        						        <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                        					      </div>
+    			                    		      <div class="brand" style="padding-top: 9%; padding-right: 60px"> {{myText}} </div>
+                  						      </a>
+                              			<ul class="dropdown-menu" style="text-align: center;">
+                                		    <li><a data-toggle="modal" href="#delModal"><i class="pe-7s-trash" style="font-size: 20px; float: left;"></i>Delete Account</a></li>
+    			                              <li><a data-toggle="modal" href="#passModal"><i class="pe-7s-refresh" style="font-size: 20px; float: left;"></i>&nbsp;Change Password</a></li>
+    			                              <li class="divider"></li>
+    			                              <li><a href="" ng-click="logout()">Logout</a></li>
+    			                              <li class="divider visible-xs"></li>
+                              			</ul>
+                        			  </li> 
+                        			  <li class="dropdown visible-xs" id="padd">
+                        				    <a href="#" class="navbar-brand navbar-brand-logo navbar dropdown-toggle" data-toggle="dropdown" style="height: 72px;">
+                                    		<div class="logo">
+                            						    <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                            					  </div>
+        			                    		  <div class="brand" style="padding-top: 9%; padding-right: 60px"> {{myText}} </div>
+                  						      </a>
+                              			<ul class="dropdown-menu" style="text-align: center; margin-left: 16% ; float:left;">
+                                			  <li ><a data-toggle="modal" href="#delModal"><i class="pe-7s-trash" style="font-size: 20px; float: left;"></i>Delete Account</a></li>
+    			                              <li><a data-toggle="modal" href="#passModal" ><i class="pe-7s-refresh" style="font-size: 20px; float: left;"></i>&nbsp;Change Password</a></li>
+    			                              <li class="divider"></li>
+    			                              <li><a href="" ng-click="logout()" >Logout</a></li>
+    			                              <li class="divider visible-xs"></li>
+                              			</ul>
+                        			  </li> 
+                        		</ul>
+    							
+    							<!-- <li class="visible-xs" style="padding-left: 27%; padding-top: 4%; width: 80%;">
+                        				<a href="MCQ.html" style="font-size: 20px; color: white;">Create Question</a>
+                        			</li> -->
+                        		<!-- </ul> -->
+                        		<!-- <form class="navbar-form navbar-right navbar-search-form" role="search">                  
+                     				<div class="form-group">
+                          				<input type="text" value="" class="form-control" placeholder="Search...">
+                     				</div> 
+                  				</form> -->		
+    	              		</div>
+    	              </div>
+    	          </nav>
+    	      </div>
+    	  </div> 
+
+
+        <div  ng-show="checkTeacher()" id="faf" style="width:100%;display: none">
+        		<div style="margin-left:0px;margin-top:0px; text-align: center">
+        			  <a href="MCQ.html" class="attract animated" style="font-size:x-large;color:white;font-weight: bolder;">Create MCQ</a>
+            </div>
+        		<div style="margin-left:0px;margin-top:25px; text-align: center" >
+        			  <a href="Test.html" style="font-size:x-large;color:white;font-weight: bolder;">Create Test</a>
+            </div>
+        		<div style="margin-left:0px;margin-top:25px; text-align: center" >
+    					  <a href="Challenge.html" style="font-size:x-large;color:white;font-weight: bolder;">Create Challenge</a>
+        		</div>
+        </div>
+
+            <!-- <div class="container">
+    			<div class="panel panel-primary" style="width: 40%;">
+    				<div class="panel-heading" style=" background:#7f7f7f; background:rgba(255,255,255,0.5);">
+    					<h5 style="text-align: center;">
+    						<img src="images/quiz-icon.png" style="height: 40px">
+    						<b>
+    							<span style="font-size: 30px;">Quiz</span>
+    							<span class="hidden-xs" style="font-size: 30px;"> Topics</span>
+    						</b>
+    					</h5>
+    					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    				</div>
+    				<div class="panel-body" style="background-color: black;">
+    					<a href="Quiz.html#/Stacks" class="btn btn-danger btn-lg" style="display: block;">
+    						<span class="fa fa-database hidden-xs" aria-hidden="true" style="font-size: 30px;">&nbsp;&nbsp;Stacks</span>
+    						<span class="fa fa-database visible-xs" aria-hidden="true" style="font-size: 20px;">&nbsp;&nbsp;Stacks</span>
+    					</a><br>
+    					<a href="Quiz.html#/Queues" class="btn btn-warning btn-lg" style="display: block;">
+    						<span class="fa fa-sort-alpha-desc hidden-xs" aria-hidden="true" style="font-size: 30px;">&nbsp;&nbsp;Queues</span>
+    						<span class="fa fa-sort-alpha-desc visible-xs" aria-hidden="true" style="font-size: 20px;">&nbsp;&nbsp;Queues</span>
+    					</a><br>
+    					<a href="Quiz.html#/Graphs" class="btn btn-primary btn-lg" style="display: block;">
+    						<span class="fa fa-line-chart hidden-xs" aria-hidden="true" style="font-size: 30px;">&nbsp;&nbsp;Graphs</span>
+    						<span class="fa fa-line-chart visible-xs" aria-hidden="true" style="font-size: 20px;">&nbsp;&nbsp;Graphs</span>
+    					</a><br>
+    					<a href="Quiz.html#/Trees" class="btn btn-success btn-lg" style="display: block;">
+    						<span class="fa fa-tree hidden-xs" aria-hidden="true" style="font-size: 30px;">&nbsp;&nbsp;Trees</span>
+    						<span class="fa fa-tree visible-xs" aria-hidden="true" style="font-size: 20px;">&nbsp;&nbsp;Trees</span>
+    					</a>
+    				</div> 
+    			</div>
+    		</div> -->
+    		<!-- <div style="height: 325px;" class="row"> -->
+    			<!-- <div>
+    				<a href="#" style="margin-left: 18%; margin-top: 10px; color: white; font-weight: bolder; font-size: x-large;">Quiz Topics</a>
+    				<a href="#" style="float: right; margin-right: 18%; color: white; font-weight: bolder; font-size: x-large;">Programming Questions</a>
+    			</div>
+    			 <i class="under"></i>-->
+    		<div class="row" style="margin-right: 0px;">
+    			  <div class="col-md-6 quiz1 " id="quizTopics" >
+    				    <a href="#" class="toph1" style=" margin-top: 10px; color: white; font-weight: bolder; font-size: x-large;">Quiz Topics</a>
+    				    <i class="under"></i>
+    				    <div class="row" style="margin-top: 45px;" ng-hide="true">
+    					      <a href="Quiz.html#/Stacks" style="float: left; " class="quiz attract animated fadeInLeft">Stacks<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <div class="row" style="margin-top: 25px;" ng-hide="true">
+    					      <a href="Quiz.html#/Queues" style="float: right; " class="quiz attract animated fadeInRight">Queues<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <div class="row" style="margin-top: 25px;" ng-hide="true">
+    					      <a href="Quiz.html#/Trees" style="float: left; " class="quiz attract animated fadeInLeft">Trees<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <div class="row" style="margin-top: 25px;" ng-hide="true">
+    					      <a href="Quiz.html#/Graphs" style="float: right; " class="quiz attract animated fadeInRight">Graphs<i class="under" style="background: white;"></i></a>
+    				    </div>
+    			 	    <i class="under topd1" style="margin-top: 50px"></i>
+    			  </div>
+    			  <div class="col-md-6 coding" id="codingTopics" >
+    				    <a href="#" class="toph2" style=" margin-top: 10px; color: white; font-weight: bolder; font-size: x-large;">Programming Questions</a>
+    				    <i class="under"></i>
+    				    <div class="row" style="margin-top: 45px;" ng-hide="true">
+    					      <a href="CodingQues.html#Arrays" style="float: left;" class="quiz attract animated fadeInLeft">Arrays<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <div class="row" style="margin-top: 25px;" ng-hide="true">
+    					      <a href="CodingQues.html#Sorting" style="float: right;" class="quiz attract animated fadeInRight">Sorting<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <div class="row" style="margin-top: 25px;" ng-hide="true">
+    					      <a href="CodingQues.html#DP" style="float: left;" class="quiz attract animated fadeInLeft">DP<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <div class="row" style="margin-top: 25px;" ng-hide="true">
+    					      <a href="CodingQues.html#Greedy" style="float: right;" class="quiz attract animated fadeInRight">Greedy<i class="under" style="background: white;"></i></a>
+    				    </div>
+    				    <i class="under topd2" style="margin-top: 50px"></i>
+    			  </div>
+    		</div> 
+
+    			<!-- <div class="row" style="margin-right: 0px;height:325px">
+    				<div class="col-md-6" id="quizTopics" style="padding-right: 0px">
+    				<a href="#" style=" color: white; font-weight: bolder; font-size: x-large;">Quiz Topics</a>
+    				<i class="under"></i>
+    					<div class="row" ng-hide="true">
+    						<a href="Quiz.html#/Stacks" style="float: left; margin-left: 13%;" class="quiz attract animated fadeInLeft">Stacks<i class="under" style="background: white;"></i></a>
+    					</div>
+    					<div class="row"  ng-hide="true">
+    						<a href="Quiz.html#/Queues" style="float: right; margin-right: 20%;" class="quiz attract animated fadeInRight">Queues<i class="under" style="background: white;"></i></a>
+    					</div>
+    					<div class="row"  ng-hide="true">
+    						<a href="Quiz.html#/Trees" style="float: left; margin-left: 13%;" class="quiz attract animated fadeInLeft">Trees<i class="under" style="background: white;"></i></a>
+    					</div>
+    					<div class="row"  ng-hide="true">
+    						<a href="Quiz.html#/Graphs" style="float: right; margin-right: 20%;" class="quiz attract animated fadeInRight">Graphs<i class="under" style="background: white;"></i></a>
+    					</div>
+    				</div>
+    				<div class="col-md-6" id="codingTopics" style="padding-left: 0px">
+    					<a href="#" style="margin-left: 18%; margin-top: 10px; color: white; font-weight: bolder; font-size: x-large;">Programming Questions</a>
+    					<i class="under"></i>
+    					<div class="row" style="margin-top: 60px;" ng-hide="true">
+    						<a href="CodingQues.html" style="float: left; margin-left: 13%;" class="quiz attract animated fadeInLeft">Arrays<i class="under" style="background: white;"></i></a>
+    					</div>
+    					<div class="row" style="margin-top: 30px;" ng-hide="true">
+    						<a href="CodingQues.html" style="float: right; margin-right: 20%;" class="quiz attract animated fadeInRight">Sortings<i class="under" style="background: white;"></i></a>
+    					</div>
+    					<div class="row" style="margin-top: 30px;" ng-hide="true">
+    						<a href="CodingQues.html" style="float: left; margin-left: 13%;" class="quiz attract animated fadeInLeft">DP<i class="under" style="background: white;"></i></a>
+    					</div>
+    					<div class="row" style="margin-top: 30px;" ng-hide="true">
+    						<a href="CodingQues.html" style="float: right; margin-right: 20%;" class="quiz attract animated fadeInRight">Greedy<i class="under" style="background: white;"></i></a>
+    					</div>
+    				</div>
+    			</div> -->
+
+    		<!-- </div> -->
+    		<!-- <div class="row" style="width: 100%; margin-top: 50px; margin-left: 0px;">
+    			<a href="Test1.html#Test1">
+    				<div class="wrapper">
+    					<div class="col_third" style="height: 0px; width: 0px;">
+    	        			<div class="hover panel" style="height: 0px; width: 0px; border: 0px;">
+    	          				<div class="front">
+    	            				<div class="box1">
+    	              					<h4>Test1</h4>
+    	            				</div>
+    	          				</div>
+    	          				<div class="back">
+    	            				<div class="box2">
+    	              					<h4>Open</h4>
+    	            				</div>
+    	          				</div>
+    	        			</div>
+    					</div>
+    				</div>
+    			</a>
+    			<a href="Test1.html#Test1">
+    				<div class="wrapper">
+    					<div class="col_third" style="height: 0px; width: 0px;">
+    	        			<div class="hover panel" style="height: 0px; width: 0px; border: 0px;">
+    	          				<div class="front" style="margin-left: 200px;">
+    	            				<div class="box1">
+    	              					<h4>Test2</h4>
+    	            				</div>
+    	          				</div>
+    	          				<div class="back" style="margin-left: 200px;">
+    	            				<div class="box2">
+    	              					<h4>Open</h4>
+    	            				</div>
+    	          				</div>
+    	        			</div>
+    					</div>
+    				</div>
+    			</a>
+    			<a href="Test1.html#Test1">
+    				<div class="wrapper">
+    					<div class="col_third" style="height: 0px; width: 0px;">
+    	        			<div class="hover panel" style="height: 0px; width: 0px; border: 0px;">
+    	          				<div class="front" style="margin-left: 400px;">
+    	            				<div class="box1">
+    	              					<h4>Test3</h4>
+    	            				</div>
+    	          				</div>
+    	          				<div class="back" style="margin-left: 400px;">
+    	            				<div class="box2">
+    	              					<h4>Open</h4>
+    	            				</div>
+    	          				</div>
+    	        			</div>
+    					</div>
+    				</div>
+    			</a>
+    		</div> -->
+
+    		<!-- <div class="row" ng-repeat="x in tNameArr" style="width: 100%; margin-top: 50px; margin-left: 0px;">
+    			<a ng-repeat="y in x.test" ng-init="myMargin=getMargin()" href="{{'Test1.html#'+y}}">
+    				<div class="wrapper">
+    					<div class="col_third" style="height: 0px; width: 0px;">
+    		       			<div class="hover panel" ng-mouseover="flip($event)" ng-mouseout="unFlip($event)" style="height: 0px; width: 0px; border: 0px;">
+    		       				<div class="front" style="margin-left: {{myMargin}}">
+    		           				<div class="box1">
+    		           					<h4>{{y}}</h4>
+    		           				</div>
+    		       				</div>
+    		       				<div class="back" style="margin-left: {{myMargin}}">
+    		           				<div class="box2">
+    		           					<h4>Open</h4>
+    		           				</div>
+    		       				</div>
+    		       			</div>
+    					</div>
+    				</div>
+    			</a>
+    		</div> -->
+    		<!-- <i class="under" id="down" style="margin-top: 50px;"></i> -->		
+    		<div class="row" style="width: 100%; margin-top: 35px; margin-left: 0px">
+    			  <a ng-repeat="x in tNameArr" ng-init="myMargin=getMargin()" ng-click="updateTime(x.test)" href="{{'Test1.html#'+x.test}}">
+    				    <div class="wrapper">
+    					      <div class="exam" > 
+    		       			    <div class="hover panel" ng-mouseover="flip($event)" ng-mouseout="unFlip($event)" style="height: 0px; width: 0px; border: 0px;"> 
+    		       				      <div class="front">
+    		           				      <div class="box1">
+    		           					        <h4>{{x.test}}</h4>
+    		           				      </div>
+    		       				      </div>
+    		       				      <div class="back">
+    		           				      <div class="box2">
+    		           					        <h4>Open</h4>
+    		           				      </div>
+    		       				      </div>
+    		       			    </div> 
+    					      </div>
+    				    </div> 
+    			  </a>
+    		</div>
+
+    			<!--
+    			<div class="row" style="width: 100%; margin-top: 35px; padding-right: 10%">
+    			 <a ng-repeat="x in tNameArr" ng-init="myMargin=getMargin()" ng-click="updateTime(x.test)" href="{{'Test1.html#'+x.test}}">
+    				<div class="wrapper">
+    					<div class="col_third" style="height: 0px; width: 0px;">
+    		       			<div class="hover panel" ng-mouseover="flip($event)" ng-mouseout="unFlip($event)" style="height: 0px; width: 0px; border: 0px;">
+    		       				<div class="front" style="margin-left: {{myMargin}}">
+    		           				<div class="box1">
+    		           					<h4>{{x.test}}</h4>
+    		           				</div>
+    		       				</div>
+    		       				<div class="back" style="margin-left: {{myMargin}}">
+    		           				<div class="box2">
+    		           					<h4>Open</h4>
+    		           				</div>
+    		       				</div>
+    		       			</div>
+    					</div>
+    				</div>
+    			</a> 
+    		</div>-->
+    </body>
+</html>

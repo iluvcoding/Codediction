@@ -1,0 +1,11 @@
+.btn {
+	-webkit-transition: all 0.2s; // Chrome
+    -moz-transition: all 0.2s; // Mozilla
+    -o-transition: all 0.2s; // Opera
+    transition: all 0.2s;
+}
+
+.transparents {
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
+}
